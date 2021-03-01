@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_111445) do
+ActiveRecord::Schema.define(version: 2021_03_01_114148) do
 
   create_table "items", force: :cascade do |t|
     t.integer "cost"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_03_01_111445) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
-    t.string "user_type"
+    t.integer "role"
     t.integer "donation_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
