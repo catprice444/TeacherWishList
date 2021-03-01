@@ -3,7 +3,7 @@ Teacher Wish List App
 User
     -string: name
     -string: password
-    -string: user_type
+    -integer: role
     -integer: donation_amount
 
     -has many items 
