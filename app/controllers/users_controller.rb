@@ -15,8 +15,8 @@ class UsersController < ApplicationController
     end 
 
     def show 
-        @user = User.find_by(params[:id])
-        if @user.role == 1
+        @user = User.find_by_id(params[:id])
+        if @user.role == 1 
             render 'users/teachers/show'
         else 
             render 'users/donors/show'
@@ -24,11 +24,11 @@ class UsersController < ApplicationController
     end 
 
     def edit 
-        @user = User.find_by(params[:id])
+        @user = User.find_by_id(params[:id])
     end 
 
     def update 
-        @user = User.find_by(params[:id])
+        @user = User.find_by_id(params[:id])
     end 
 
     private 

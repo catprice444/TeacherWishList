@@ -1,4 +1,19 @@
 <h1> Teachers </h1>
 
-<h3><%= @user.name %> </h3>
-<h3><%= @user.role %> </h3>
+    <h2><%= @user.name %></h2>
+    <br>
+    </br>
+
+    <% if @user.role == 1 %>
+        <h3><%= "Yes this is a teacher" %></h3>
+    <% else %>
+        <h3><%= "Your code is wrong" %></h3>
+    <% end %>
+
+    <br>
+    </br>
+        
+  
+
+
+<%= button_to "Logout", logout_path %>

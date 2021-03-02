@@ -37,3 +37,5 @@ Items
         #   <a class="navbar-brand" href="<%= new_user_path %>"/>Sign Up</a>
         #   <a class="navbar-brand" href="<%= signin_path %>"/>Log in</a>
         # <% end %> 
+
+
