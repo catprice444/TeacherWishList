@@ -1,1 +1,23 @@
 <h1> Sign Up </h1>
+
+<%= form_for @user do |f| %>
+    <p><%= f.label :name %>
+    <%= f.text_field :name %></p>
+    <br>
+
+    <p><%= f.label :password %>
+    <%= f.password_field :password %></p>
+    <br>
+
+    <p><%= f.label :role %>
+    <%= f.select :role, [ ['Teacher', 1],['Donor', 2] ], :prompt => 'Select One' %>
+    <br>
+    </br>
+
+    <%= f.submit "Submit" %>
+
+<% end %>
+
+    
+
+
