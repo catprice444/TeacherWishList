@@ -5,12 +5,8 @@ class SessionsController < ApplicationController
     end
     
     def create
-        @user = User.find_by(name: params[:name])
-        if @user.role == 1
-            render 'users/teachers/show'
-        else 
-            render 'users/donors/show'
-        end 
+        @user = User.find_by(name, params[:name])
+        redirect_to user_path(@user)
     end
     
     def destroy
