@@ -1,0 +1,7 @@
+<h1> List of all the Schools </h1>
+
+<% @schools.each do |s| %>
+    <ul>
+    <li><%= s.name %> - <%= s.location %></li>
+    </ul>
+<% end %>

@@ -1,5 +1,9 @@
 class SchoolsController < ApplicationController
     
+    def index 
+        @schools = School.all 
+    end 
+    
     def new 
         @school = School.new
     end 
@@ -9,19 +13,21 @@ class SchoolsController < ApplicationController
     end 
 
     def show 
-        @school = School.find(params[:id])
+        @school = School.find_by_id(params[:id])
     end 
 
     def edit 
-        @school = School.find(params[:id])
+        @school = School.find_by_id(params[:id])
     end 
 
     def update 
-        @school = School.find(params[:id])
+        @school = School.find_by_id(params[:id])
     end 
+
+   
 
     private 
     def school_params 
-        params.require(:school).permit(:name, :location)
+        params.permit(:name, :location)
     end 
 end

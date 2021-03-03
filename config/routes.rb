@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
   
   
+
   resources :items
   resources :schools
   resources :users

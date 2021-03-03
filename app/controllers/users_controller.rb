@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
     private 
     def user_params
-        params.require(:user).permit(:name, :password, :role, )
+        params.require(:user).permit(:name, :password, :role, :donation_amount)
     end 
 
     #should I create two different types of params, one for donor and one for teacher?
