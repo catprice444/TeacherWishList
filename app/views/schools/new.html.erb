@@ -1,1 +1,28 @@
-<h1> New School </h1>
+<h1> School Information </h1>
+
+<%= form_for @school do |f| %>
+  
+    
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+
+    <%= f.submit "Add Your School" %>
+
+<% end %>
+
+# <%= form_tag school_path(@school) do %>
+#     <label> School Name: </label>
+#     <%= select_tag "name", options_from_collection_for_select(@school, "name", "name"), :prompt=>"Please select your school from this dropdown" %><br><br>
+
+#     <label> School Name: </label>
+#     <%= text_field_tag "name" %><br>
+
+#     <label> School Location: </label>
+#     <%= text_field_tag "location" %><br>
+
+#     <%= submit_tag "Add your School" %>
+# <% end %>
+
