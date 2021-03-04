@@ -1,9 +1,9 @@
 <h1> List of all the Schools </h1>
 
 <% @schools.each do |school| %>
-    <ul>
+    <ol>
     <li><%= link_to "#{school.name}", school_path(school)  %> - <%= school.location %></li>
-    </ul>
+    </ol>
 <% end %>
 
 <%= link_to "New School", new_school_path %>

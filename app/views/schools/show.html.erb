@@ -1,3 +1,13 @@
 <h1> School </h1>
 
 <h3><%= @school.name %> - <%= @school.location %><h3>
+
+<h1> List of all the Items </h1>
+
+<% @school.items.each do |school| %>
+    <ol>
+    <li><%= school.item.name %> - <%= school.item.cost %> - <%= school.item.amount_needed %></li>
+    </ol>
+<% end %>
+
+<%= link_to "Add Item", new_item_path %>

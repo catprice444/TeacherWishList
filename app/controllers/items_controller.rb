@@ -1,8 +1,5 @@
 class ItemsController < ApplicationController
     
-    def index
-        @items = Items.all
-    end 
 
     def new
         @item = Item.new 
@@ -13,15 +10,15 @@ class ItemsController < ApplicationController
     end 
 
     def show 
-        @item = Item.find(params[:id])
+        @item = Item.find_by_id(params[:id])
     end 
 
     def edit 
-        @item = Item.find(params[:id])
+        @item = Item.find_by_id(params[:id])
     end 
     
     def update 
-        @item = Item.find(params[:id])
+        @item = Item.find_by_id(params[:id])
     end 
 
     private 
