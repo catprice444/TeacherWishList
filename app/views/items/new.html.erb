@@ -1,14 +1,20 @@
 <h1> Add a New Item </h1>
 
-<%= form_for @item do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %> 
 
-    <%= f.label :cost %>
-    <%= f.number_field :cost %>
+<%= form_tag items_path do %>
+    <%= hidden_field_tag "id", @school %>
 
-    <%= f.label :amount_needed %>
-    <%= f.number_field :amount_needed %>
+    <label> School Name: </label>
+    <%= select_tag "school_name", options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Please select your School from this dropdown" %><br><br>
 
-    <%= f.submit "Add the Item" %>
+    <label> Item Name: </label>
+    <%= text_field_tag "name" %><br>
+
+    <label> Cost: </label>
+    <%= number_field_tag "cost" %><br>
+
+    <label> Amount Needed: </label>
+    <%= number_field_tag "amount_needed" %><br>
+
+    <%= submit_tag "Add Item" %>
 <% end %>

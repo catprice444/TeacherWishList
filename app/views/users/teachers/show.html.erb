@@ -1,7 +1,6 @@
 <h1> Teachers </h1>
 
     <h2><%= @user.name %></h2>
-    <h2><%= @user.schools.name %></h2>
     <br>
     </br>
 
@@ -13,6 +12,10 @@
 
     <br>
     </br>
+<%= link_to "Add new items", new_item_path %>
+    <br>
+    </br>
+
         
 <%= button_to "Logout", logout_path %>
 

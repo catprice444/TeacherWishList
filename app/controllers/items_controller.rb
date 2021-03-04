@@ -2,14 +2,18 @@ class ItemsController < ApplicationController
     
 
     def new
-        @item = Item.new 
+        @item = Item.includes(:schools).new
+        @schools = School.all
     end 
 
     def create
         @item = Item.create(item_params)
-        @item.save 
-        
-        redirect_to school_items_path(@school)
+        @schools = School.all
+        if @item.save 
+            redirect_to schools_path(@school)
+        else 
+            render :new
+        end 
 
     end 
 
@@ -27,6 +31,6 @@ class ItemsController < ApplicationController
 
     private 
     def item_params
-        params.permit(:cost, :name, :amount_needed, :school_id, :user_id)
+        params.permit(:cost, :name, :amount_needed, :school_id).merge(user: current_user)
     end 
 end
