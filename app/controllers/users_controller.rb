@@ -8,7 +8,11 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         if @user.save 
             session[:id] = @user.id
-            redirect_to user_path(@user)
+            if @user.role = 1
+                render 'schools/new'
+            else 
+                redirect_to user_path(@user)
+            end 
         else 
             render 'users/new'
         end 

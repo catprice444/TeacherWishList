@@ -7,6 +7,10 @@ class ItemsController < ApplicationController
 
     def create
         @item = Item.create(item_params)
+        @item.save 
+        
+        redirect_to school_items_path(@school)
+
     end 
 
     def show 
@@ -23,6 +27,6 @@ class ItemsController < ApplicationController
 
     private 
     def item_params
-        params.require(:item).permit(:cost, :name, :amount_needed)
+        params.permit(:cost, :name, :amount_needed, :school_id, :user_id)
     end 
 end
