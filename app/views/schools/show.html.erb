@@ -4,9 +4,9 @@
 
 <h1> List of all the Items </h1>
 
-<% @school.items.each do |school| %>
+<% @school.items.each do |item| %>
     <ol>
-    <li><%= school.item.name %> - <%= school.item.cost %> - <%= school.item.amount_needed %></li>
+    <li><%= item.name %> - <%= item.cost %> - <%= item.amount_needed %></li>
     </ol>
 <% end %>
 

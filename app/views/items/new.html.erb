@@ -2,10 +2,10 @@
 
 
 <%= form_tag items_path do %>
-    <%= hidden_field_tag "school_id", @school %>
+    <%= hidden_field_tag "school_id", @schools.ids %>
 
     <label> School Name: </label>
-    <%= select_tag "school_name", options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Please select your School from this dropdown" %><br><br>
+    <%= select_tag "school_id", options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Please select your School from this dropdown" %><br><br>
 
     <label> Item Name: </label>
     <%= text_field_tag "name" %><br>
