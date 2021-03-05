@@ -1,9 +1,20 @@
 <h1> List of all the Schools </h1>
 
 <% @schools.each do |school| %>
-    <ol>
-    <li><%= link_to "#{school.name}", school_path(school)  %> - <%= school.location %></li>
-    </ol>
+    <p><b><%= link_to "#{school.name}", school_path(school)  %> - <%= school.location %></b></p>
+        <% school.items.each do |item| %>
+            <ul>
+            <li><%= item.name %> - $<%= item.total_cost %></li>
+            
+            </ul>
+        <% end %>
 <% end %>
 
+<br>
+</br>
+
+
 <%= link_to "New School", new_school_path %>
+<br>
+</br>
+<%= link_to "Profile Page", user_path(current_user) %>

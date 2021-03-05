@@ -8,8 +8,6 @@ class ItemsController < ApplicationController
 
     def create
         @item = Item.create(item_params)
-        @school = School.all
-        
         if @item.save 
             redirect_to schools_path(@school)
         else 

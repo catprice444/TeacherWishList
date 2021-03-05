@@ -1,6 +1,7 @@
 <h1> Teachers </h1>
 
     <h2><%= @user.name %></h2>
+  
     <br>
     </br>
 
@@ -12,6 +13,17 @@
 
     <br>
     </br>
+
+
+    <% @user.items.each do |item| %>
+        <p><b><%= item.name %></b> <br>
+         Cost: $<%= item.cost %> <br>
+         Amount Needed: <%= item.amount_needed %> </p>
+    <% end %>
+
+    <br>
+    </br>
+
 <%= link_to "Add new items", new_item_path %>
     <br>
     </br>
