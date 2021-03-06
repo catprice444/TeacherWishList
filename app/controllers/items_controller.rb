@@ -23,9 +23,19 @@ class ItemsController < ApplicationController
 
     def edit 
         @item = Item.find_by_id(params[:id])
+        render 'items/teachers/edit'
     end 
     
     def update 
+        @item = Item.find_by_id(params[:id])
+    end 
+
+    def donate 
+        @item = Item.find_by_id(params[:id])
+        render 'items/donors/donate'
+    end 
+
+    def donated 
         @item = Item.find_by_id(params[:id])
     end 
 

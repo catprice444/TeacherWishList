@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   post '/logout' => 'sessions#destroy'
   
-  
+  get '/items/donate' => 'items#donate'
+  post '/items/donate' => 'items#donated'
 
   
   resources :schools do 

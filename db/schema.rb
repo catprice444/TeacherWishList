@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_114148) do
+ActiveRecord::Schema.define(version: 2021_03_06_162547) do
 
   create_table "items", force: :cascade do |t|
     t.integer "cost"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_03_01_114148) do
     t.integer "school_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "units_donated"
     t.index ["school_id"], name: "index_items_on_school_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end

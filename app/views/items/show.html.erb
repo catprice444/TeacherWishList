@@ -1,10 +1,10 @@
-
+<h3> <%= @item.school.name %> </h3> <br>
 
 <h1> <%= @item.name %> </h1><br>
-<h3> <%= @item.school.name %> </h3> <br>
-<p>Cost per unit: <%= @item.cost %> </p> 
-<p> Amount Requested: <%= @item.amount_needed %></p>
-<p> Amount Donated: <%=  @item.
 
-<% if current_user.role == 1 %>
-    <
+<p> <b> Total Cost: $<%= @item.total_cost %></b> </p> 
+
+<p>Cost per unit: $<%= @item.cost %> </p> 
+<p> Units Still Needed: <%= @item.amount_needed %></p>
+<p> Units Donated: <%= @item.units_donated %></p>
+
