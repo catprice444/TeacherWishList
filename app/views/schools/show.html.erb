@@ -6,14 +6,14 @@
 <h3> Needed Items </h3>
 
 <% @school.items.each do |item| %>
-    <p><U><%= link_to item.name, school_item_path(item[:id]) %></U><br>  
-    Remaining Goal: $<%= item.total_cost %><br> 
+    <p><U><%= link_to item.name, item_path(item[:id]) %></U><br>  
+    Remaining Goal: $<br> 
     Units Still Needed: <%= item.amount_needed %><br>
     Units Donated: <%= item.units_donated %></p>
 <% end %>
 
 <% if current_user.role == 1%>
-    <%= link_to "Add Item", new_school_item_path(@school) %>
+    <%= link_to "Add Item", new_item_path(@item) %>
 <% else %>
     <p> Click on the item to donate <p>
 <% end %>

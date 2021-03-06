@@ -2,16 +2,16 @@
 
 <h3> <%= @item.name %> </h3><br>
 
-<p> <b> Remaining Goal: $<%= @item.total_cost %></b> <br>
+<p> <b> Remaining Goal: $</b> <br>
 
 Cost per unit: $<%= @item.cost %>  <br>
 Units Still Needed: <%= @item.amount_needed %><br>
 Units Donated: <%= @item.units_donated %></p><br>
 
 <% if current_user.role == 1%>
-    <%= link_to "Edit Item", edit_school_item_path(@item) %>
+    <%= link_to "Edit Item", edit_item_path(@item) %>
 <% else %>
-    <%= link_to "Donate Now!", donate_school_item_path(@item) %>
+    <%= link_to "Donate Now!", donate_item_path(@item) %>
 <% end %>
 
 

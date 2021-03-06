@@ -1,8 +1,8 @@
-<%= form_for ([:school, @item]) do |f| %>
-    <%= f.hidden_field :school_id %>
+<%= form_for @item do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
 
     <p> School Name: </p>
-    <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Please select your School from this dropdown" %><br><br>
+    <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Select Your School" %><br><br>
 
     <p> Item Name: </p>
     <%= f.text_field :name %><br>
