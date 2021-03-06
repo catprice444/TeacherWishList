@@ -1,4 +1,4 @@
-<h1> List of all the Schools </h1>
+<h1> Schools </h1>
 
 <% @schools.each do |school| %>
     <p><b><%= link_to "#{school.name}", school_path(school)  %> - <%= school.location %></b></p>
@@ -13,8 +13,10 @@
 <br>
 </br>
 
+<% if current_user.role == 1 %>
+    <%= link_to "New School", new_school_path %>
+<% end %>
 
-<%= link_to "New School", new_school_path %>
 <br>
 </br>
 <%= link_to "Profile Page", user_path(current_user) %>

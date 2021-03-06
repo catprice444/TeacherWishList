@@ -1,15 +1,14 @@
-<h1> School Information </h1>
-
-
+<h1> Add your School </h1>
 
 <%= form_tag schools_path do %>
-    
-    <label> Or Add your School: </label>
-    <%= text_field_tag "name" %><br>
 
-    <label> School Location: </label>
-    <%= text_field_tag "location" %><br>
+    <label> Name: </label>
+    <%= text_field_tag "name", @school.name %><br>
 
-    <%= submit_tag "Add your School" %>
+    <label> Location: </label>
+    <%= text_field_tag "location", @school.location %><br>
+    </br>
+
+    <%= submit_tag "Add Your School" %>
 <% end %>
 

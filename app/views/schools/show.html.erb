@@ -1,13 +1,15 @@
-<h1> School </h1>
+<h1><%= @school.name %></h1>
+<h2> <%= @school.location %></h2>
+<br>
+</br>
 
-<h3><%= @school.name %> - <%= @school.location %><h3>
-
-<h1> List of all the Items </h1>
+<h3> Needed Items </h3>
 
 <% @school.items.each do |item| %>
-    <ol>
-    <li><%= link_to item.name, school_item_path(item[:id]) %> - <%= item.cost %> - <%= item.amount_needed %></li>
-    </ol>
+    <p><U><%= link_to item.name, school_item_path(item[:id]) %></U><br>  
+    Remaining Goal: $<%= item.total_cost %><br> 
+    Units Still Needed: <%= item.amount_needed %><br>
+    Units Donated: <%= item.units_donated %></p>
 <% end %>
 
 <% if current_user.role == 1%>
@@ -17,6 +19,9 @@
 <% if current_user.role == 2 %>
     <p> Click on the item to donate <p>
 <% end %>
+
+<br>
+</br>
 
 <%= link_to "User Profile Page", current_user %>
 

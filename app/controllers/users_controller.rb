@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-    
     skip_before_action :require_login, only: [:new, :create]
 
     def new 
@@ -11,7 +10,7 @@ class UsersController < ApplicationController
         if @user.save 
             session[:id] = @user.id
             if @user.role == 1
-                render 'schools/new'
+                render 'users/teachers/show'
             else 
                 render 'users/donors/show'
             end 

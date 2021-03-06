@@ -2,33 +2,28 @@
 
     <h2><%= @user.name %></h2>
     <h2> <%= @user.donation_amount %></h2>
-    <h2> THIS IS BROKEN, SEE IF YOU CAN FIX - <%= current_user.schools.name %></h2>
     <br>
     </br>
 
-    <% if @user.role == 1 %>
-        <h3><%= "Yes this is a teacher" %></h3>
-    <% else %>
-        <h3><%= "Your code is wrong" %></h3>
-    <% end %>
-
-    <br>
-    </br>
-
+    <h3> Requested Items </h3>
 
     <% @user.items.each do |item| %>
-        <p><b><%= item.name %></b> <br>
-         Cost: $<%= item.cost %> <br>
-         Amount Needed: <%= item.amount_needed %> </p>
+        <p><U><%= link_to item.name, school_item_path(item[:id]) %></U><br>
+            Cost Per Unit: $<%= item.cost %> <br>
+            Amount Still Needed: <%= item.amount_needed %><br> 
+            Amount Donated: <%= item.units_donated %></p>
     <% end %>
 
     <br>
     </br>
 
-<%= link_to "Add new items", new_item_path %>
+<%= link_to "Add New Items", new_item_path %>
     <br>
     </br>
 
+<%= link_to "School List", schools_path %>
+<br>
+</br>
         
 <%= button_to "Logout", logout_path %>
 

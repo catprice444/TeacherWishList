@@ -1,20 +1,16 @@
 <h1> Donors </h1>
 
 <h2><%= @user.name %> <%= @user.role %></h2>
-<h2> <%= @user.donation_amount %></h2>
+<h2> Available Money: $<%= @user.donation_amount %></h2>
+
+
 <br>
-    </br>
+</br>
 
-    <% if @user.role == 2 %>
-        <h3><%= "Yes this is a Donor" %></h3>
-    <% else %>
-        <h3><%= "Your code is wrong" %></h3>
-    <% end %>
-
-    <br>
-    </br>
 <%= link_to "Update Amount You Want To Donate", edit_user_path(@user) %>
- 
+<br>
+</br>
 
 <%= link_to "Schools", schools_path %>
+<br>
 <%= button_to "Logout", logout_path %>
