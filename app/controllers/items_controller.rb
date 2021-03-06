@@ -4,37 +4,35 @@ class ItemsController < ApplicationController
     def new
         @item = Item.new
         @schools = School.all
-        
     end 
 
     def create
-        
         @item = Item.create(item_params)
-        
-        @item.save 
-        
-        redirect_to schools_path(@school)
-        
-           
-        
+        if @item.save 
+            redirect_to school_path(@school)
+        else 
+            redirect_to schools_path
+        end 
     end 
 
     def show 
         @item = Item.find_by_id(params[:id])
-        
     end 
 
     def edit 
         @item = Item.find_by_id(params[:id])
         @schools = School.all
-        render 'items/teachers/edit'
+        if current_user.id == @item.user_id
+            render 'items/teachers/edit'
+        else 
+            redirect_to schools_path
+        end 
     end 
     
     def update 
         @item = Item.find_by_id(params[:id])
-        if current_user.id == @item.user_id
-            @item = Item.update(item_params)
-            redirect_to school_item_path(@item)
+        if @item = Item.update(item_params)
+            redirect_to item_path(@item)
         else 
             redirect_to schools_path
         end 
@@ -60,7 +58,7 @@ class ItemsController < ApplicationController
 
     private 
     def item_params
-        params.permit(:cost, :name, :amount_needed, :school_id, :user_id)
+        params.require(:item).permit(:cost, :name, :amount_needed, :school_id, :user_id)
     end 
 
      

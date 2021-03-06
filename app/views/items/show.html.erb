@@ -2,7 +2,7 @@
 
 <h3> <%= @item.name %> </h3><br>
 
-<p> <b> Remaining Goal: $</b> <br>
+<p> <b> Remaining Goal: $<%= @item.total_cost %></b> <br>
 
 Cost per unit: $<%= @item.cost %>  <br>
 Units Still Needed: <%= @item.amount_needed %><br>

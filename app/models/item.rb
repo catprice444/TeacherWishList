@@ -2,9 +2,9 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :school
 
-  # def total_cost
-  #   cost + amount_needed
-  # end 
+  def total_cost
+    cost + amount_needed
+  end 
 
   # def enough_money?
   #   if item.total_cost > current_user.donation_amount 
