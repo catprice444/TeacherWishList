@@ -6,12 +6,10 @@ class Item < ApplicationRecord
     cost * amount_needed
   end 
 
-  def quantity_donated
-    amount_needed 
-  end 
-
-  def donation
-
+  def enough_money?
+    if current_user.donation_amount >= @item.total_cost
+      units_donated - amount_needed
+    end 
   end 
 
 end

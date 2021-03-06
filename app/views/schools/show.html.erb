@@ -6,7 +6,7 @@
 
 <% @school.items.each do |item| %>
     <ol>
-    <li><%= link_to item.name, item_path(item[:id]) %> - <%= item.cost %> - <%= item.amount_needed %></li>
+    <li><%= link_to item.name, school_item_path(item[:id]) %> - <%= item.cost %> - <%= item.amount_needed %></li>
     </ol>
 <% end %>
 

@@ -30,13 +30,18 @@ class ItemsController < ApplicationController
         @item = Item.find_by_id(params[:id])
     end 
 
-    def donate 
+    def donate
         @item = Item.find_by_id(params[:id])
         render 'items/donors/donate'
     end 
 
     def donated 
         @item = Item.find_by_id(params[:id])
+        if @item.enough_money? == true 
+            redirect_to schools_path 
+        else 
+            redirect_to item_path(@item)
+        end 
     end 
 
     private 

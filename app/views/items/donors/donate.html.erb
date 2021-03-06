@@ -1,1 +1,16 @@
 <h1> Donation Page </h1>
+
+<h2> <%= @item.name %> </h2><br>
+
+<h3> Available Money: $<%= current_user.donation_amount %></h3>
+<h3> Total Cost: $<%= @item.total_cost %></h3>
+<h3> Units Still Needed: <%= @item.amount_needed %></h3>
+
+
+<%= form_tag donate_item_path do %>
+    <label> How many units do you want to donate?: </label>
+    <%= number_field_tag "units_donated" %><br>
+    <%= submit_tag "Submit Donation" %>
+<% end %>
+
+
