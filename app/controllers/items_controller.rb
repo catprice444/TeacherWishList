@@ -11,23 +11,30 @@ class ItemsController < ApplicationController
         if @item.save 
             redirect_to schools_path(@school)
         else 
-            raise.inspect params
-            redirect_to new_item_path
+            redirect_to current_user
         end 
 
     end 
 
     def show 
         @item = Item.find_by_id(params[:id])
+        
     end 
 
     def edit 
         @item = Item.find_by_id(params[:id])
+        @schools = School.all
         render 'items/teachers/edit'
     end 
     
     def update 
         @item = Item.find_by_id(params[:id])
+        if current_user.id == @item.user_id
+            @item = Item.update(item_params)
+            redirect_to school_item_path(@item)
+        else 
+            redirect_to schools_path
+        end 
     end 
 
     def donate

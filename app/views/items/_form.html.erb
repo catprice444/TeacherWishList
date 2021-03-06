@@ -1,0 +1,17 @@
+<%= form_for ([:school, @item]) do |f| %>
+    <%= f.hidden_field :school_id %>
+
+    <p> School Name: </p>
+    <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Please select your School from this dropdown" %><br><br>
+
+    <p> Item Name: </p>
+    <%= f.text_field :name %><br>
+
+    <p> Cost Per Unit (round up): </p>
+    <%= f.number_field :cost %><br>
+
+    <p> Amount Needed: </p>
+    <%= f.number_field :amount_needed %><br>
+    </br>
+    <%= f.submit %>
+<% end %>
