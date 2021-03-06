@@ -8,10 +8,10 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         if @user.save 
             session[:id] = @user.id
-            if @user.role = 1
+            if @user.role == 1
                 render 'schools/new'
             else 
-                redirect_to user_path(@user)
+                render 'users/donors/show'
             end 
         else 
             render 'users/new'
@@ -22,17 +22,23 @@ class UsersController < ApplicationController
         @user = User.find_by_id(params[:id])
         if @user.role == 1 
             render 'users/teachers/show'
-        else 
+        else @user.role == 2
             render 'users/donors/show'
         end 
     end 
 
     def edit 
         @user = User.find_by_id(params[:id])
+        if @user.role == 1 
+            render 'users/teachers/edit'
+        else 
+            render 'users/donors/edit'
+        end 
     end 
 
     def update 
         @user = User.find_by_id(params[:id])
+        redirect_to user_path(@user)
     end 
 
     private 

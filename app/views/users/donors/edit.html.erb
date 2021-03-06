@@ -1,0 +1,6 @@
+<p> Update the amount you want to donate </p>
+<%= form_for @user do |f| %>
+    <%= f.label :donation_amount %>
+    <%= f.number_field :donation_amount %>
+    <%= f.submit "Confirm" %>
+<% end %>

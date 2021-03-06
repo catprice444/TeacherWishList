@@ -1,6 +1,7 @@
 <h1> Donors </h1>
 
 <h2><%= @user.name %> </h2>
+<h2> <%= current_user.donation_amount %></h2>
 <br>
     </br>
 
@@ -12,6 +13,7 @@
 
     <br>
     </br>
+<%= link_to "Update Amount You Want To Donate", edit_user_path(@user) %>
  
 
 <%= link_to "Schools", schools_path %>
