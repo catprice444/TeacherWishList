@@ -30,17 +30,15 @@ class UsersController < ApplicationController
     end 
 
     def edit 
-        @user = current_user
-        if @user.role == 1 
-            render 'users/teachers/edit'
-        else 
-            render 'users/donors/edit'
-        end 
+        @user = User.find_by_id(params[:id])
+        render 'users/donors/edit'
     end 
 
     def update 
-        if current_user.update donation_params
-            redirect_to current_user
+        @user = User.find_by_id(params[:id])
+        if @user.role = 2 
+            @user.update(donation_params)
+            redirect_to user_path(@user)
         end 
     end 
 
