@@ -11,10 +11,15 @@ Rails.application.routes.draw do
 
   
   resources :schools do 
-    resources :items
+    resources :items do 
+      get 'donate', :on => :member
+      post 'donate', :on => :member
+    end 
+
   end 
   
   resources :users
+  resources :items
   
 
   

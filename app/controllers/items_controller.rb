@@ -37,9 +37,13 @@ class ItemsController < ApplicationController
 
     def donated 
         @item = Item.find_by_id(params[:id])
-        if @item.enough_money? == true 
+        donation = @item.enough_money?
+        if donation == true 
+            @item.save
+            flash[:message] = "Thanks for the donation!"
             redirect_to schools_path 
-        else 
+        else  
+            flash[:error] = "Not enough money"
             redirect_to item_path(@item)
         end 
     end 

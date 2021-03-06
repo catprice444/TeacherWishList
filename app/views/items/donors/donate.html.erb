@@ -1,4 +1,8 @@
 <h1> Donation Page </h1>
+<% if flash[:error] %>
+    <h1><%= flash[:error] %></h1>
+<% end %>
+
 
 <h2> <%= @item.name %> </h2><br>
 
@@ -6,8 +10,7 @@
 <h3> Total Cost: $<%= @item.total_cost %></h3>
 <h3> Units Still Needed: <%= @item.amount_needed %></h3>
 
-
-<%= form_tag donate_item_path do %>
+<%= form_tag donate_school_item_path do %>
     <label> How many units do you want to donate?: </label>
     <%= number_field_tag "units_donated" %><br>
     <%= submit_tag "Submit Donation" %>
