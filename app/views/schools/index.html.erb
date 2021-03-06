@@ -4,7 +4,7 @@
     <p><b><%= link_to "#{school.name}", school_path(school)  %> - <%= school.location %></b></p>
         <% school.items.each do |item| %>
             <ul>
-            <li><%= item.name %> - $</li>
+            <li><%= item.name %> - $<%= item.total_cost %></li>
             
             </ul>
         <% end %>
