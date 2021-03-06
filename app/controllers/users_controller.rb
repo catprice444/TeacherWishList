@@ -22,24 +22,30 @@ class UsersController < ApplicationController
 
     def show 
         @user = User.find_by_id(params[:id])
-        if @user.role == 1 
-            render 'users/teachers/show'
-        else @user.role == 2
-            render 'users/donors/show'
+        if @user != current_user
+            redirect_to current_user
+        else 
+            if @user.role == 1 
+                render 'users/teachers/show'
+            else @user.role == 2
+                render 'users/donors/show'
+            end 
         end 
     end 
 
     def edit 
         @user = User.find_by_id(params[:id])
-        render 'users/donors/edit'
+        if @user.role == 2
+            render 'users/donors/edit'
+        else 
+            redirect_to current_user
+        end 
     end 
 
     def update 
         @user = User.find_by_id(params[:id])
-        if @user.role = 2 
-            @user.update(donation_params)
-            redirect_to user_path(@user)
-        end 
+        @user.update(donation_params)
+        redirect_to user_path(@user)
     end 
 
     private 
