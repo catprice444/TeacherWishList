@@ -6,8 +6,17 @@
 
 <% @school.items.each do |item| %>
     <ol>
-    <li><%= item.name %> - <%= item.cost %> - <%= item.amount_needed %></li>
+    <li><%= link_to item.name, item_path(item[:id]) %> - <%= item.cost %> - <%= item.amount_needed %></li>
     </ol>
 <% end %>
 
-<%= link_to "Add Item", new_item_path %>
+<% if current_user.role == 1 %>
+    <%= link_to "Add Item", new_item_path %>
+<% end %>
+
+<% if current_user.role == 2 %>
+    <p> Click on the item to donate <p>
+<% end %>
+
+
+    

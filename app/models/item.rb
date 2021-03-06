@@ -6,4 +6,12 @@ class Item < ApplicationRecord
     cost * amount_needed
   end 
 
+  def quantity_donated
+    amount_needed - 
+  end 
+
+  def donation
+
+  end 
+
 end
