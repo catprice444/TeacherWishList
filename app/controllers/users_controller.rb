@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     
+    skip_before_action :require_login, only: [:new, :create]
+
     def new 
         @user = User.new
     end 
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
     end 
 
     def edit 
-        @user = User.find_by_id(params[:id])
+        @user = current_user
         if @user.role == 1 
             render 'users/teachers/edit'
         else 
@@ -37,15 +39,20 @@ class UsersController < ApplicationController
     end 
 
     def update 
-        @user = User.find_by_id(params[:id])
-        redirect_to user_path(@user)
+        if current_user.update donation_params
+            redirect_to current_user
+        end 
     end 
 
     private 
     def user_params
-        params.require(:user).permit(:name, :password, :role, :donation_amount)
+        params.require(:user).permit(:name, :password, :role)
     end 
 
-    #should I create two different types of params, one for donor and one for teacher?
+    def donation_params
+        params.require(:user).permit(:donation_amount)
+    end 
+
+    
 
 end

@@ -10,13 +10,17 @@
     </ol>
 <% end %>
 
-<% if current_user.role == 1 %>
+<% if current_user.role == 1%>
     <%= link_to "Add Item", new_item_path %>
 <% end %>
 
 <% if current_user.role == 2 %>
     <p> Click on the item to donate <p>
 <% end %>
+
+<%= link_to "Add Item", new_item_path %>
+
+
 
 
     
