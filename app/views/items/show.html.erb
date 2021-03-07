@@ -8,10 +8,16 @@ Cost per unit: $<%= @item.cost %>  <br>
 Units Still Needed: <%= @item.amount_needed %><br>
 Units Donated: <%= @item.units_donated %></p><br>
 
+
 <% if current_user.role == 1%>
     <%= link_to "Edit Item", edit_item_path(@item) %>
+    <p> Delete Item </p>
 <% else %>
-    <%= link_to "Donate Now!", donate_item_path(@item) %>
+    <% if @item.amount_needed == nil %>
+        <p> Request has been filled </p>
+    <% else %>
+        <%= link_to "Donate Now!", donate_item_path(@item) %>
+    <% end %>
 <% end %>
 
 

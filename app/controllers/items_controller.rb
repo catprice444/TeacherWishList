@@ -44,8 +44,8 @@ class ItemsController < ApplicationController
     end 
 
     def donated 
-        @item = Item.find_by_id(params[:id])
-        donation = @item.enough_money?
+        @item = Item.update(donation_params)
+        donation = @item.donation
         if donation == true 
             @item.save
             flash[:message] = "Thanks for the donation!"
@@ -59,6 +59,10 @@ class ItemsController < ApplicationController
     private 
     def item_params
         params.require(:item).permit(:cost, :name, :amount_needed, :school_id, :user_id)
+    end 
+
+    def donation_params
+        params.require(:item).permit(:amount_needed)
     end 
 
      

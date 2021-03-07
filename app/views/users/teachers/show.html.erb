@@ -8,7 +8,7 @@
     <h3> Requested Items </h3>
 
     <% @user.items.each do |item| %>
-        <p><U><%= link_to item.name, school_item_path(item[:id]) %></U><br>
+        <p><U><%= link_to item.name, item_path(item[:id]) %></U><br>
             Cost Per Unit: $<%= item.cost %> <br>
             Amount Still Needed: <%= item.amount_needed %><br> 
             Amount Donated: <%= item.units_donated %></p>

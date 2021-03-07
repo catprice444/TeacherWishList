@@ -6,13 +6,19 @@ class Item < ApplicationRecord
     cost + amount_needed
   end 
 
-  # def enough_money?
-  #   if item.total_cost > current_user.donation_amount 
-  #     "Sorry you don't have enough money"
-  #   else 
-  #     item.update(amount_needed: (units_donated - amount_needed))
-  #   end 
-  # end 
+  def enough_money?
+    total_cost >= current_user.donation_amount 
+  end 
+
+  def donation
+    if !enough_money?
+      "Sorry you don't have enough money"
+    else 
+      item.update(amount_needed: (user.units_donated - amount_needed))
+    end 
+  end 
+
+  
 
 end
 
