@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     end 
 
     def create
-        @item = Item.create(item_params)
+        @item = Item.create(items_params)
         if @item.save 
             redirect_to school_path(@item.school_id)
         else 
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
     
     def update 
         @item = Item.find_by_id(params[:id])
-        if @item = Item.update(item_params)
+        if @item.update(item_params)
             redirect_to item_path
         else 
             redirect_to schools_path
@@ -47,11 +47,9 @@ class ItemsController < ApplicationController
 
     def donated 
         @item = Item.find_by_id(params[:id])
-        if @item.not_donated_item == true 
-            current_user.update(donation_amount: (current_user.donation_amount.to_i - @item.total_cost.to_i))
-            @item.update_column(:amount_needed, 0)
-            flash[:message] = "Thanks for your donation"
-        end 
+        current_user.update(donation_amount: (current_user.donation_amount.to_i - @item.total_cost.to_i))
+        @item.update_column(:amount_needed, 0)
+        flash[:message] = "Thanks for your donation"
         redirect_to item_path 
     end
 
@@ -68,13 +66,11 @@ class ItemsController < ApplicationController
    
 
     private 
-    def item_params
+    def items_params
         params.require(:item).permit(:cost, :name, :amount_needed, :school_id, :user_id)
     end 
 
-    def donation_params
-        params.permit(:units_donated)
-    end 
-
-     
+    def item_params
+        params.require(:item).permit(:cost, :amount_needed)
+    end
 end

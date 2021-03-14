@@ -1,6 +1,6 @@
-<h1> Donors </h1>
+<h1> Donor </h1>
 
-<h2><%= @user.name %> <%= @user.role %></h2>
+<h2><%= @user.name %></h2>
 <h2> Available Money: $<%= @user.donation_amount %></h2>
 
 
@@ -11,6 +11,11 @@
 <br>
 </br>
 
-<%= link_to "Schools", schools_path %>
+<%= link_to "List of Schools", schools_path %>
 <br>
+</br>
+<%= link_to "List of Needed Items", items_path %>
+<br>
+</br>
+
 <%= button_to "Logout", logout_path %>

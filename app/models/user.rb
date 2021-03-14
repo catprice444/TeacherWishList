@@ -7,4 +7,5 @@ class User < ApplicationRecord
     scope :teacher, -> { where(role: 1) }
 
     validates :name, uniqueness: true, presence: true
+    validates :role, presence: true
 end

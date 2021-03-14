@@ -3,23 +3,18 @@
 <br>
 </br>
 
-<h3> Needed Items </h3>
-
 <% @school.items.each do |item| %>
-    <p><U><% if item.amount_needed != nil %>
-            <%= link_to item.name, item_path(item[:id]) %></U>
+    <% if item.amount_needed != 0 || item.user_id == current_user.id %>
+           <p><U> <%= link_to item.name, item_path(item[:id]) %> </U><br>
         <% else %>
-            <% item.name %>
-        <% end %> <br>  
+        <U> <%= item.name %></U><br>
+        <% end %> 
     Remaining Goal: $<%= item.total_cost %><br> 
-    Units Still Needed: <%= item.amount_needed %><br>
+    Units Still Needed: <%= item.amount_needed %></p><br>
 <% end %>
 
-<% @school.items.each do |item| %>
-    <p><U><%= link_to item.name, item_path(item[:id]) %></U><br>  
-    Remaining Goal: $<%= item.total_cost %><br> 
-    Units Still Needed: <%= item.amount_needed %><br>
-<% end %>
+<br>
+</br>
 
 
 <% if current_user.role == 1%>
