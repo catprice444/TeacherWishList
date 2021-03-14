@@ -1,0 +1,4 @@
+<% @items.not_donated_item.each do |item| %>
+    <%= link_to item.name, item_path(item[:id]) %><br>
+<% end %>
+

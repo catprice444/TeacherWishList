@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-    
+    def index 
+        @items = Item.all 
+    end 
 
     def new
         @item = Item.new
@@ -32,7 +34,7 @@ class ItemsController < ApplicationController
     def update 
         @item = Item.find_by_id(params[:id])
         if @item = Item.update(item_params)
-            redirect_to item_path(@item)
+            redirect_to item_path
         else 
             redirect_to schools_path
         end 
@@ -41,19 +43,25 @@ class ItemsController < ApplicationController
     def donate
         @item = Item.find_by_id(params[:id])
         render 'items/donors/donate'
-        
-      
     end 
 
     def donated 
         @item = Item.find_by_id(params[:id])
-        user = current_user
-        user.update(donation_amount: (user.donation_amount.to_i - @item.total_cost.to_i))
-        @item.update_column(:amount_needed, 0)
+        if @item.not_donated_item == true 
+            current_user.update(donation_amount: (current_user.donation_amount.to_i - @item.total_cost.to_i))
+            @item.update_column(:amount_needed, 0)
             flash[:message] = "Thanks for your donation"
-     
+        end 
         redirect_to item_path 
     end
+
+    def destroy 
+        @item = Item.find_by_id(params[:id])
+        if @item.user_id = current_user.id
+            @item.delete 
+        end 
+        redirect_to schools_path
+    end 
    
 
     private 

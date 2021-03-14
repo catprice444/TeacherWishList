@@ -6,10 +6,21 @@
 <h3> Needed Items </h3>
 
 <% @school.items.each do |item| %>
+    <p><U><% if item.amount_needed != nil %>
+            <%= link_to item.name, item_path(item[:id]) %></U>
+        <% else %>
+            <% item.name %>
+        <% end %> <br>  
+    Remaining Goal: $<%= item.total_cost %><br> 
+    Units Still Needed: <%= item.amount_needed %><br>
+<% end %>
+
+<% @school.items.each do |item| %>
     <p><U><%= link_to item.name, item_path(item[:id]) %></U><br>  
     Remaining Goal: $<%= item.total_cost %><br> 
     Units Still Needed: <%= item.amount_needed %><br>
 <% end %>
+
 
 <% if current_user.role == 1%>
     <%= link_to "Add Item", new_item_path(@item) %>

@@ -15,7 +15,7 @@ Units Still Needed: <%= @item.amount_needed %><br>
 
 <% if current_user.role == 1%>
     <%= link_to "Edit Item", edit_item_path(@item) %>
-    <p> Delete Item </p>
+    <%= button_to 'Delete Item', @item, method: :delete %>
 <% else %>
     <% if @item.amount_needed == nil %>
         <p> Request has been filled </p>
