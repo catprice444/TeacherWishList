@@ -59,6 +59,9 @@ class ItemsController < ApplicationController
         @item = Item.find_by_id(params[:id])
         if @item.user_id = current_user.id
             @item.delete 
+        else 
+            redirect_to item_path
+            flash[:message] = "Sorry you cannot delete this item"
         end 
         redirect_to schools_path
     end 

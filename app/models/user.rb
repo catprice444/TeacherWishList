@@ -5,4 +5,6 @@ class User < ApplicationRecord
 
     scope :donor, -> { where(role: 2) }
     scope :teacher, -> { where(role: 1) }
+
+    validates :name, uniqueness: true, presence: true
 end
