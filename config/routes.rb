@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :schools
   resources :users
   resources :items do 
-    get 'donate', :on => :member
-    post 'donate', :on => :member
+    get 'donate' => 'items#donate', :on => :member
+    post 'donate' => 'items#donated', :on => :member
   end 
   
   

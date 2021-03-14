@@ -11,9 +11,8 @@
 <h3> Units Still Needed: <%= @item.amount_needed %></h3>
 
 <%= form_tag donate_item_path do %>
-    <label> How many units do you want to donate?: </label>
-    <%= number_field_tag "units_donated" %><br>
-    <%= submit_tag "Submit Donation" %>
+    
+    <%= submit_tag "Donate" %>
 <% end %>
 
 

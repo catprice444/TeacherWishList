@@ -9,7 +9,6 @@
     <p><U><%= link_to item.name, item_path(item[:id]) %></U><br>  
     Remaining Goal: $<%= item.total_cost %><br> 
     Units Still Needed: <%= item.amount_needed %><br>
-    Units Donated: <%= item.units_donated %></p>
 <% end %>
 
 <% if current_user.role == 1%>

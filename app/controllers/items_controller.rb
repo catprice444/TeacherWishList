@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     def create
         @item = Item.create(item_params)
         if @item.save 
-            redirect_to school_path(@school)
+            redirect_to school_path(@item.school_id)
         else 
             redirect_to schools_path
         end 
@@ -41,20 +41,20 @@ class ItemsController < ApplicationController
     def donate
         @item = Item.find_by_id(params[:id])
         render 'items/donors/donate'
+        
+      
     end 
 
     def donated 
-        @item = Item.update(donation_params)
-        donation = @item.donation
-        if donation == true 
-            @item.save
-            flash[:message] = "Thanks for the donation!"
-            redirect_to schools_path 
-        else  
-            flash[:error] = "Not enough money"
-            redirect_to item_path(@item)
-        end 
-    end 
+        @item = Item.find_by_id(params[:id])
+        user = current_user
+        user.update(donation_amount: (user.donation_amount.to_i - @item.total_cost.to_i))
+        @item.update_column(:amount_needed, 0)
+            flash[:message] = "Thanks for your donation"
+     
+        redirect_to item_path 
+    end
+   
 
     private 
     def item_params
@@ -62,7 +62,7 @@ class ItemsController < ApplicationController
     end 
 
     def donation_params
-        params.require(:item).permit(:amount_needed)
+        params.permit(:units_donated)
     end 
 
      

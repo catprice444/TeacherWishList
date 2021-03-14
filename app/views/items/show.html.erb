@@ -1,12 +1,16 @@
 <h1> <%= @item.school.name %> </h1> <br>
+<% if flash[:message] %>
+    <h1><%= flash[:message] %></h1>
+<% end %>
 
 <h3> <%= @item.name %> </h3><br>
+
 
 <p> <b> Remaining Goal: $<%= @item.total_cost %></b> <br>
 
 Cost per unit: $<%= @item.cost %>  <br>
 Units Still Needed: <%= @item.amount_needed %><br>
-Units Donated: <%= @item.units_donated %></p><br>
+
 
 
 <% if current_user.role == 1%>
@@ -17,7 +21,9 @@ Units Donated: <%= @item.units_donated %></p><br>
         <p> Request has been filled </p>
     <% else %>
         <%= link_to "Donate Now!", donate_item_path(@item) %>
+        <%= link_to "School Home Page", school_path(@item.school) %>
     <% end %>
 <% end %>
 
 
+<h3> You have this much to donate: $<%= current_user.donation_amount %> </h3><br>

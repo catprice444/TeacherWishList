@@ -38,4 +38,19 @@ Items
         #   <a class="navbar-brand" href="<%= signin_path %>"/>Log in</a>
         # <% end %> 
 
+enough_money = (current_user.donation_amount > (@item.cost * @item.amount_needed))
+        check_donation = current_user.donation_amount > @item.amount_needed
+
+            if !check_donation
+                flash[:message] = "Too many units"
+            else 
+                current_user.update(donation_amount: ((current_user.donation_amount - (@item.cost * current_user.donation_amount.to_i))))
+                @item.update(units_donated: :units_donated, amount_needed: (@item.amount_needed - current_user.donation_amount.to_i))
+                if @item.save && current_user.save
+                    flash[:message] = "Thanks!"
+                else 
+                    flash[:message] = "Wrong"
+                end
+            
+            end  
 
