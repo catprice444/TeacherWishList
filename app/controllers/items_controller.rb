@@ -10,10 +10,11 @@ class ItemsController < ApplicationController
 
     def create
         @item = Item.create(items_params)
+        @schools = School.all
         if @item.save 
             redirect_to school_path(@item.school_id)
         else 
-            redirect_to schools_path
+            render 'new'
         end 
     end 
 
@@ -59,7 +60,6 @@ class ItemsController < ApplicationController
             @item.delete 
         else 
             redirect_to item_path
-            flash[:message] = "Sorry you cannot delete this item"
         end 
         redirect_to schools_path
     end 

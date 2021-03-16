@@ -1,6 +1,7 @@
 class School < ApplicationRecord
     has_many :items 
     has_many :users, through: :items
-    validates :name, uniqueness: true, presence: true
+
+    validates :name, presence: true, uniqueness: true
     validates :location, presence: true
 end

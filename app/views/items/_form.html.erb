@@ -12,7 +12,7 @@
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
     
-    <div class="field<%= 'field_with_errors' if @item.errors[:school].any? %>">
+    <div class="field<%= 'field_with_errors' if @item.errors[:school_id].any? %>">
         <p> School Name: </p>
         <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Select Your School" %><br><br>
     </div>
@@ -30,7 +30,7 @@
     </div>
 
     
-    div class="field<%= 'field_with_errors' if @item.errors[:amount_needed].any? %>">
+    <div class="field<%= 'field_with_errors' if @item.errors[:amount_needed].any? %>">
         <p> Amount Needed: </p>
         <%= f.number_field :amount_needed %><br>
     </div>
