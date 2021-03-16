@@ -1,11 +1,26 @@
-<h1>  </h1>
+<h1> Login </h1>
 
 <%= form_tag login_path do %>
-    <label> Name: </label>
-    <%= text_field_tag "name" %><br><br>
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2> Error: </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-    <label> Password: </label>
-    <%= password_field_tag "password" %><br>
+    <div class="field <%= 'field_with_errors' if @user.errors[:name].any? %>">
+        <label> Name: </label>
+        <%= text_field_tag "name" %><br><br>
+    </div>
+
+    <div class="field <%= ' field_with_errors' if @user.errors[:name].any? %>">
+        <label> Password: </label>
+        <%= password_field_tag "password" %><br>
+    </div>
     </br>
 
     <%= submit_tag "Sign In" %>
