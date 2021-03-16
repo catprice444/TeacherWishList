@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
         @item = Item.find_by_id(params[:id])
         current_user.update(donation_amount: (current_user.donation_amount.to_i - @item.total_cost.to_i))
         @item.update_column(:amount_needed, 0)
-        flash[:message] = "Thanks for your donation"
+        flash[:msg] = "Thanks for your donation"
         redirect_to item_path 
     end
 

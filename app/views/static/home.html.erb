@@ -1,4 +1,7 @@
 <h1> Teacher Wish List </h1>
+<% if flash[:msg] %>
+    <h1><%= flash[:msg] %></h1>
+<% end %>
 
 <%= link_to "Sign up", signup_path %><br>
 </br>

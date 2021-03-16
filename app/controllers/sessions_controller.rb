@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             session[:id] = @user.id
             redirect_to user_path(@user)
         else
-            redirect_to root_path
+            render 'new'
         end
     end
     
@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
           session.delete :user_id
         end
         redirect_to root_path
+        flash[:msg] = "You have logged out"
     end
 
 end
