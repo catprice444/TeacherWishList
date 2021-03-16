@@ -15,7 +15,7 @@ class UsersController < ApplicationController
                 render 'users/donors/show'
             end 
         else 
-            render 'users/new'
+            render 'new'
         end 
     end 
 
