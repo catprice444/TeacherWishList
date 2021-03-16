@@ -5,8 +5,8 @@
     <div id="error_explanation">
       <h2> Error: </h2>
       <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li> <%= msg %> </li>
+        <% @user.errors.full_messages.each do |message| %>
+          <li> <%= message %> </li>
         <% end %>
       </ul>
     </div>
@@ -17,7 +17,7 @@
         <%= text_field_tag "name" %><br><br>
     </div>
 
-    <div class="field <%= 'field_with_errors' if @user.errors[:name].any? %>">
+    <div class="field <%= 'field_with_errors' if @user.errors[:password].any? %>">
         <label> Password: </label>
         <%= password_field_tag "password" %><br>
     </div>
