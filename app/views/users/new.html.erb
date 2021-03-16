@@ -1,17 +1,35 @@
 <h1> Sign Up </h1>
 
 <%= form_for @user do |f| %>
-    <p><%= f.label :name %>
-    <%= f.text_field :name %></p>
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>Error:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><% msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="field<%= 'field_with_errors' if @user.errors[:name].any? %>">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <br>
+    
+    <div class="field<%= 'field_with_errors' if @user.errors[:password].any? %>">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+    </div>
     <br>
 
-    <p><%= f.label :password %>
-    <%= f.password_field :password %></p>
+    <div class="field<%= 'field_with_errors' if @user.errors[:role].any? %>">
+        <%= f.label :role %>
+        <%= f.select :role, [['Teacher', 1],['Donor', 2]], :prompt => 'Select One' %>
+    </div>
     <br>
 
-    <p><%= f.label :role %>
-    <%= f.select :role, [['Teacher', 1],['Donor', 2]], :prompt => 'Select One' %></p>
-    <br>
     </br>
 
     <%= f.submit "Submit" %>

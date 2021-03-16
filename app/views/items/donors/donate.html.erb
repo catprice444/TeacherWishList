@@ -1,8 +1,4 @@
 <h1> Donation Page </h1>
-<% if flash[:error] %>
-    <h1><%= flash[:error] %></h1>
-<% end %>
-
 
 <h2> <%= @item.name %> </h2><br>
 
@@ -11,7 +7,17 @@
 <h3> Units Still Needed: <%= @item.amount_needed %></h3>
 
 <%= form_tag donate_item_path do %>
-    
+    <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2> Error: </h2>
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
     <%= submit_tag "Donate" %>
 <% end %>
 

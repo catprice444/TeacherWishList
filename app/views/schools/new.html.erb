@@ -1,12 +1,28 @@
 <h1> Add your School </h1>
 
 <%= form_tag schools_path do %>
+    <% if @school.errors.any? %>
+    <div id="error_explanation">
+      <h2> Error: </h2>
+      <ul>
+        <% @school.errors.full_messages.each do |msg| %>
+          <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-    <label> Name: </label>
-    <%= text_field_tag "name", @school.name %><br>
+    
+    <div class="field <%= ' field_with_errors' if @school.errors[:name].any? %>">
+        <label> Name: </label>
+        <%= text_field_tag "name", @school.name %><br>
+    </div>
 
-    <label> Location: </label>
-    <%= text_field_tag "location", @school.location %><br>
+    
+    <div class="field <%= ' field_with_errors' if @school.errors[:location].any? %>">
+        <label> Location: </label>
+        <%= text_field_tag "location", @school.location %><br>
+    </div>
     </br>
 
     <%= submit_tag "Add Your School" %>

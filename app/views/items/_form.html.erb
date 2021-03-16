@@ -1,17 +1,40 @@
 <%= form_for @item do |f| %>
+    <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2>Error:</h2>
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><% msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
     <%= f.hidden_field :user_id, :value => current_user.id %>
+    
+    <div class="field<%= 'field_with_errors' if @item.errors[:school].any? %>">
+        <p> School Name: </p>
+        <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Select Your School" %><br><br>
+    </div>
 
-    <p> School Name: </p>
-    <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Select Your School" %><br><br>
+    
+    <div class="field<%= 'field_with_errors' if @item.errors[:name].any? %>">
+        <p> Item Name: </p>
+        <%= f.text_field :name %><br>
+    </div> 
 
-    <p> Item Name: </p>
-    <%= f.text_field :name %><br>
+    
+    <div class="field<%= 'field_with_errors' if @item.errors[:cost].any? %>">
+        <p> Cost Per Unit (round up): </p>
+        <%= f.number_field :cost %><br>
+    </div>
 
-    <p> Cost Per Unit (round up): </p>
-    <%= f.number_field :cost %><br>
+    
+    div class="field<%= 'field_with_errors' if @item.errors[:amount_needed].any? %>">
+        <p> Amount Needed: </p>
+        <%= f.number_field :amount_needed %><br>
+    </div>
 
-    <p> Amount Needed: </p>
-    <%= f.number_field :amount_needed %><br>
     </br>
     <%= f.submit %>
 <% end %>
