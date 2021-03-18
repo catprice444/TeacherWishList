@@ -1,24 +1,21 @@
-# README
+# Teacher Wish List
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Welcome to my Rails App!
 
-Things you may want to cover:
+This basic app was modeled after the website DonorsChoose.org. The purpose of this app is to allow a user to login through deciding how they want to interact with it. Selecting if they a teacher or a donor. 
 
-* Ruby version
+Once a teacher logins, it allows them to create new schools, add items they need and perform the basic CRUD functionalities on those items. 
 
-* System dependencies
+A donor is able to choose how much money they want to donate then browse the needed items. If they have enough money, they are able to donate the item for that teacher. 
 
-* Configuration
+## Install Instructions
 
-* Database creation
+To begin using this app, clone the repo, run `bundle install`, `rake db:migrate`, and then run `shotgun`.
 
-* Database initialization
+## Contributors Guide
 
-* How to run the test suite
+Bug reports and pull requests are welcome on GitHub at https://github.com/catprice444/TeacherWishList. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://contributor-covenant.org/) code of conduct.
 
-* Services (job queues, cache servers, search engines, etc.)
+## License 
 
-* Deployment instructions
-
-* ...
+The project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
