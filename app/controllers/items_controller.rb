@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
     before_action :school_id, only: [:index, :new, :create, :edit, :update]
     before_action :item_id, only: [:show, :edit, :update, :donate, :donated]
-    before_action :redirect_if_not_owner, only: [:edit, :update]
 
     def index 
         @items = @school.items
@@ -24,7 +23,12 @@ class ItemsController < ApplicationController
     end 
 
     def edit 
-        render 'items/teachers/edit'
+        if @item.user_id == current_user.id
+            render 'items/teachers/edit'
+        else 
+            flash[:msg] = "You cannot edit this item"
+            redirect_to schools_path
+        end 
     end 
     
     def update 
@@ -77,8 +81,4 @@ class ItemsController < ApplicationController
     def item_id
         @item = Item.find_by_id(params[:id])
     end
-
-    def redirect_if_not_owner
-        redirect_to items_path if @item.user != current_user
-    end 
 end
