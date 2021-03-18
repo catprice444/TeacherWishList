@@ -9,9 +9,7 @@
     <p><%= link_to item.name, item_path(item[:id]) %>
     <p>Goal: $<%= item.total_cost %></p>
 <% end %>
-<br>
-</br>
-<%= link_to "School Home Page", schools_path %>
+
 <br>
 </br>
 <% if current_user.role == 1 %>
