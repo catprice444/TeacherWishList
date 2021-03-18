@@ -1,4 +1,5 @@
 class SchoolsController < ApplicationController
+    before_action :school_id, only: [:show, :edit, :update]
 
     def index 
         @schools = School.all 
@@ -17,20 +18,21 @@ class SchoolsController < ApplicationController
         end 
     end 
 
-    def show 
-        @school = School.find_by_id(params[:id])
+    def show  
     end 
 
     def edit 
-        @school = School.find_by_id(params[:id])
     end 
 
     def update 
-        @school = School.find_by_id(params[:id])
     end 
 
     private 
     def school_params 
         params.permit(:name, :location)
+    end 
+
+    def school_id
+        @school = School.find_by_id(params[:school_id])
     end 
 end
