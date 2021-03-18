@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-    before_action :find_item_id, only: [:show, :edit, :update, :donate, :donated]
+    before_action :school_id, only: [:new, :create, :edit, :update]
+    before_action :item_id, only: [:show, :edit, :update, :donate, :donated]
     before_action :redirect_if_not_owner, only: [:edit, :update]
 
     def index 
@@ -12,12 +13,11 @@ class ItemsController < ApplicationController
     end 
 
     def new
-        @item = Item.new
-        @school = School.find_by_id(params[:school_id])
+       
     end 
 
     def create
-        if @item = Item.create(create_items_params)
+        if @item = @school.items.create(create_items_params)
             redirect_to school_path(@item.school_id)
         else 
             render 'new'
@@ -28,7 +28,6 @@ class ItemsController < ApplicationController
     end 
 
     def edit 
-        @school = School.find_by_id(params[:school_id])
         render 'items/teachers/edit'
     end 
     
@@ -75,7 +74,11 @@ class ItemsController < ApplicationController
         params.require(:item).permit(:cost, :amount_needed)
     end
 
-    def find_item_id
+    def school_id
+        @school = School.find_by_id(params[:school_id])
+    end 
+
+    def item_id
         @item = Item.find_by_id(params[:id])
     end
 
