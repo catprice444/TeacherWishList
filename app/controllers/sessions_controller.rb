@@ -20,5 +20,10 @@ class SessionsController < ApplicationController
         redirect_to root_path
         flash[:msg] = "You have logged out"
     end
+    
+    private 
+    def auth
+        request.env['omniauth.auth']
+      end
 
 end
