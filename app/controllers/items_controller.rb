@@ -43,10 +43,10 @@ class ItemsController < ApplicationController
     end 
 
     def donate
+        render 'items/donors/donate'
     end 
 
     def donated 
-        
         current_user.update(donation_amount: (current_user.donation_amount.to_i - @item.total_cost.to_i))
         @item.update_column(:amount_needed, 0)
         flash[:msg] = "Thanks for your donation"

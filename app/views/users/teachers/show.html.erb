@@ -6,7 +6,6 @@
 
     <% @user.items.item_order.each do |item| %>
         <p><U><%= link_to item.name, item_path(item[:id]) %></U><br>
-            Cost Per Unit: $<%= item.cost %> <br>
             Amount Still Needed: <%= item.amount_needed %><br> 
     <% end %>
 

@@ -12,6 +12,9 @@
 
 <%= link_to "School Home Page", schools_path %>
 <br>
-<%= link_to "Add Item", new_school_item_path %>
+</br>
+<% if current_user.role == 1 %>
+    <%= link_to "Add Item", new_school_item_path %>
+<% end %>
 
 
