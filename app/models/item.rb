@@ -7,10 +7,10 @@ class Item < ApplicationRecord
   validates :name, presence: true
    
   
+ 
   def total_cost
     cost * amount_needed
   end 
-
   
 
   

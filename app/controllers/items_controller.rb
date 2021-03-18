@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+    before_action :find_item_id, only: [:show, :edit, :update, :donate, :donated]
+    before_action :redirect_if_not_owner, only: [:edit, :update]
+
     def index 
         @items = Item.all 
     end 
@@ -9,7 +12,7 @@ class ItemsController < ApplicationController
     end 
 
     def create
-        @item = Item.create(items_params)
+        @item = Item.create(create_items_params)
         @schools = School.all
         if @item.save 
             redirect_to school_path(@item.school_id)
@@ -19,22 +22,13 @@ class ItemsController < ApplicationController
     end 
 
     def show 
-        @item = Item.find_by_id(params[:id])
     end 
 
     def edit 
-        @item = Item.find_by_id(params[:id])
-        @schools = School.all
-        if current_user.id == @item.user_id
-            render 'items/teachers/edit'
-        else 
-            redirect_to schools_path
-        end 
     end 
     
     def update 
-        @item = Item.find_by_id(params[:id])
-        if @item.update(item_params)
+        if @item.update(update_item_params)
             redirect_to item_path
         else 
             redirect_to schools_path
@@ -42,12 +36,11 @@ class ItemsController < ApplicationController
     end 
 
     def donate
-        @item = Item.find_by_id(params[:id])
-        render 'items/donors/donate'
+
     end 
 
     def donated 
-        @item = Item.find_by_id(params[:id])
+        
         current_user.update(donation_amount: (current_user.donation_amount.to_i - @item.total_cost.to_i))
         @item.update_column(:amount_needed, 0)
         flash[:msg] = "Thanks for your donation"
@@ -66,11 +59,23 @@ class ItemsController < ApplicationController
    
 
     private 
-    def items_params
+    def create_items_params
         params.require(:item).permit(:cost, :name, :amount_needed, :school_id, :user_id)
     end 
 
-    def item_params
+    def update_item_params
         params.require(:item).permit(:cost, :amount_needed)
     end
+
+    def find_item_id
+        @item = Item.find_by(id: params[:id])
+        if !@item
+          flash[:message] = "item was not found"
+          redirect_to items_path
+        end
+      end
+
+    def redirect_if_not_owner
+        redirect_to items_path if @item.user != current_user
+    end 
 end
