@@ -17,9 +17,7 @@ class ItemsController < ApplicationController
     end 
 
     def create
-        @item = Item.create(create_items_params)
-        
-        if @item.save 
+        if @item = Item.create(create_items_params)
             redirect_to school_path(@item.school_id)
         else 
             render 'new'
@@ -78,11 +76,7 @@ class ItemsController < ApplicationController
     end
 
     def find_item_id
-        @item = Item.find_by(id: params[:id])
-        if !@item
-          flash[:msg] = "Item was not found"
-          redirect_to items_path
-        end
+        @item = Item.find_by_id(params[:id])
     end
 
     def redirect_if_not_owner
