@@ -3,7 +3,12 @@ class ItemsController < ApplicationController
     before_action :redirect_if_not_owner, only: [:edit, :update]
 
     def index 
-        @items = Item.all 
+        if params[:school_id] && @school = School.find_by_id(params[:post_id])
+            @items = @school.items
+        else
+           @error = "That school doesn't exist" if params[:school_id]
+           @schools = School.all
+        end
     end 
 
     def new
@@ -25,6 +30,8 @@ class ItemsController < ApplicationController
     end 
 
     def edit 
+        @schools = School.all
+        render 'items/teachers/edit'
     end 
     
     def update 
@@ -36,7 +43,6 @@ class ItemsController < ApplicationController
     end 
 
     def donate
-
     end 
 
     def donated 
@@ -70,10 +76,10 @@ class ItemsController < ApplicationController
     def find_item_id
         @item = Item.find_by(id: params[:id])
         if !@item
-          flash[:message] = "item was not found"
+          flash[:msg] = "Item was not found"
           redirect_to items_path
         end
-      end
+    end
 
     def redirect_if_not_owner
         redirect_to items_path if @item.user != current_user

@@ -1,4 +1,4 @@
-<h1> Items Still Needed </h1>
+<h1> Items Still Needed  </h1>
 
 <% if current_user.role == 2 %>
     <h4> Click on any item to donate </h4>
@@ -6,7 +6,7 @@
 <% end %>
 
 <% @items.not_donated_item.each do |item| %>
-    <p><%= link_to item.name, school_item_path(item[:id]) %><br>
+    <p><%= link_to item.name, school_items_path(item[:id]) %><br>
     <%= item.school.name %><br>
     Goal: $<%= item.total_cost %></p>
 <% end %>
