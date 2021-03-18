@@ -1,15 +1,20 @@
 <h1> Items Requested by <%= @school.name %> </h1>
 
 <% if current_user.role == 2 %>
-    <h4> Click on any item to donate </h4>
+    <h4> Click on item to donate </h4>
     <h4> Available Money: $<%= current_user.donation_amount %> </h4>
 <% end %>
 
 <% @school.items.each do |item| %>
-    <p><%= link_to item.name, item_path(item[:id]) %><br>
-    Goal: $<%= item.total_cost %></p>
+    <% if item.total_cost > 0 %>
+        <p><%= link_to item.name, item_path(item[:id]) %>
+    <% else %>
+        <p><U> <%= item.name %></U> </p>
+    <% end %>
+    <p>Goal: $<%= item.total_cost %></p>
 <% end %>
-
+<br>
+</br>
 <%= link_to "School Home Page", schools_path %>
 <br>
 </br>
