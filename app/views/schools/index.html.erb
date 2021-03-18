@@ -1,7 +1,10 @@
 <h1> Schools </h1>
+<% if flash[:msg] %>
+    <h3><%= flash[:msg] %></h3>
+<% end %>
 
-<% @schools.each do |school| %>
-    <p><b><%= link_to "#{school.name}", school_path(school)  %> - <%= school.location %></b></p>
+<% @schools.school_order.each do |school| %>
+    <p><b><%= link_to "#{school.name}", school_items_path(school)  %> - <%= school.location %></b></p>
         <% school.items.each do |item| %>
             <ul>
             <li><%= item.name %> - $<%= item.total_cost %></li>

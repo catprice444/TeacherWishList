@@ -3,17 +3,17 @@ class ItemsController < ApplicationController
     before_action :redirect_if_not_owner, only: [:edit, :update]
 
     def index 
-        if params[:school_id] && @school = School.find_by_id(params[:post_id])
+        if params[:school_id] && @school = School.find_by_id(params[:school_id])
             @items = @school.items
         else
-           @error = "That school doesn't exist" if params[:school_id]
-           @schools = School.all
+            flash[:msg] = "That school doesn't exist" if params[:school_id]
+            redirect_to schools_path
         end
     end 
 
     def new
         @item = Item.new
-        @schools = School.all
+        @schools = School.find_by_id(params[:id])
     end 
 
     def create
