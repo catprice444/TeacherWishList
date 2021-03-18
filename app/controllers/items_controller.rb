@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-    before_action :find_item_id, only: [:show, :edit, :update, :donate, :donated]
-    before_action :redirect_if_not_owner, only: [:edit, :update]
+    before_action :find_item_id, only: [:show, :edit, :update, :donate, :donated, :destory]
+    before_action :redirect_if_not_owner, only: [:edit, :update, :destroy]
 
     def index 
         if params[:school_id] && @school = School.find_by_id(params[:school_id])
@@ -58,12 +58,7 @@ class ItemsController < ApplicationController
     end
 
     def destroy 
-        @item = Item.find_by_id(params[:id])
-        if @item.user_id = current_user.id
-            @item.delete 
-        else 
-            redirect_to item_path
-        end 
+        @item.delete 
         redirect_to schools_path
     end 
    
@@ -86,6 +81,6 @@ class ItemsController < ApplicationController
     end
 
     def redirect_if_not_owner
-        redirect_to items_path if @item.user != current_user
+        redirect_to items_path if @item.user_id != current_user.id
     end 
 end

@@ -6,11 +6,7 @@
 <% end %>
 
 <% @school.items.each do |item| %>
-    <% if item.total_cost > 0 %>
-        <p><%= link_to item.name, item_path(item[:id]) %>
-    <% else %>
-        <p><U> <%= item.name %></U> </p>
-    <% end %>
+    <p><%= link_to item.name, item_path(item[:id]) %>
     <p>Goal: $<%= item.total_cost %></p>
 <% end %>
 <br>
