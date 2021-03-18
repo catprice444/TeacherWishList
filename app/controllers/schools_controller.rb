@@ -33,6 +33,6 @@ class SchoolsController < ApplicationController
     end 
 
     def school_id
-        @school = School.find_by_id(params[:school_id])
+        @school = School.find_by_id(params[:id])
     end 
 end
