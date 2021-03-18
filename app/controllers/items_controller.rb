@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
         if params[:school_id] && @school = School.find_by_id(params[:school_id])
             @items = @school.items
         else
-            flash[:msg] = "That school doesn't exist" if params[:school_id]
+            flash[:msg] = "That doesn't exist" 
             redirect_to schools_path
         end
     end 
@@ -81,6 +81,6 @@ class ItemsController < ApplicationController
     end
 
     def redirect_if_not_owner
-        redirect_to items_path if @item.user_id != current_user.id
+        redirect_to items_path if @item.user != current_user
     end 
 end
