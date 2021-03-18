@@ -13,12 +13,12 @@ class ItemsController < ApplicationController
 
     def new
         @item = Item.new
-        @schools = School.find_by_id(params[:id])
+        @school = School.find_by_id(params[:school_id])
     end 
 
     def create
         @item = Item.create(create_items_params)
-        @schools = School.all
+        
         if @item.save 
             redirect_to school_path(@item.school_id)
         else 
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     end 
 
     def edit 
-        @schools = School.all
+        @school = School.find_by_id(params[:school_id])
         render 'items/teachers/edit'
     end 
     

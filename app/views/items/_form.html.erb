@@ -11,13 +11,8 @@
     <% end %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
-    
-    <div class="field<%= 'field_with_errors' if @item.errors[:school_id].any? %>">
-        <p> School Name: </p>
-        <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Select Your School" %><br><br>
-    </div>
+    <%= f.hidden_field :school_id, :value => params[:school_id] %>
 
-    
     <div class="field<%= 'field_with_errors' if @item.errors[:name].any? %>">
         <p> Item Name: </p>
         <%= f.text_field :name %><br>

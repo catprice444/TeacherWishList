@@ -37,20 +37,9 @@ Items
         #   <a class="navbar-brand" href="<%= new_user_path %>"/>Sign Up</a>
         #   <a class="navbar-brand" href="<%= signin_path %>"/>Log in</a>
         # <% end %> 
+           
 
-enough_money = (current_user.donation_amount > (@item.cost * @item.amount_needed))
-        check_donation = current_user.donation_amount > @item.amount_needed
-
-            if !check_donation
-                flash[:message] = "Too many units"
-            else 
-                current_user.update(donation_amount: ((current_user.donation_amount - (@item.cost * current_user.donation_amount.to_i))))
-                @item.update(units_donated: :units_donated, amount_needed: (@item.amount_needed - current_user.donation_amount.to_i))
-                if @item.save && current_user.save
-                    flash[:message] = "Thanks!"
-                else 
-                    flash[:message] = "Wrong"
-                end
-            
-            end  
-
+ <div class="field<%= 'field_with_errors' if @item.errors[:school_id].any? %>">
+        <p> School Name: </p>
+        <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Select Your School" %><br><br>
+    </div>
