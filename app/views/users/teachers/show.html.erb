@@ -1,13 +1,10 @@
 <h1> Teachers </h1>
 
     <h2><%= @user.name %></h2>
-    <h2> <%= @user.donation_amount %></h2>
-    <br>
-    </br>
 
     <h3> Requested Items </h3>
 
-    <% @user.items.each do |item| %>
+    <% @user.items.item_order.each do |item| %>
         <p><U><%= link_to item.name, item_path(item[:id]) %></U><br>
             Cost Per Unit: $<%= item.cost %> <br>
             Amount Still Needed: <%= item.amount_needed %><br> 

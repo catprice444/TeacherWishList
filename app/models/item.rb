@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   validates :cost, presence: true
   validates :amount_needed, presence: true, on: :create
   validates :name, presence: true
+  scope :item_order, -> {order(:name)}
    
   
  
