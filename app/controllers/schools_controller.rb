@@ -1,5 +1,4 @@
 class SchoolsController < ApplicationController
-    before_action :find_item_id, only: [:show, :edit, :update]
 
     def index 
         @schools = School.all 
@@ -19,24 +18,19 @@ class SchoolsController < ApplicationController
     end 
 
     def show 
+        @school = School.find_by_id(params[:id])
     end 
 
     def edit 
+        @school = School.find_by_id(params[:id])
     end 
 
     def update 
+        @school = School.find_by_id(params[:id])
     end 
 
     private 
     def school_params 
         params.permit(:name, :location)
     end 
-
-    def find_school_id
-        @school = School.find_by(id: params[:id])
-        if !@school
-          flash[:msg] = "School was not found"
-          redirect_to items_path
-        end
-    end
 end

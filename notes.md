@@ -37,9 +37,4 @@ Items
         #   <a class="navbar-brand" href="<%= new_user_path %>"/>Sign Up</a>
         #   <a class="navbar-brand" href="<%= signin_path %>"/>Log in</a>
         # <% end %> 
-           
-
- <div class="field<%= 'field_with_errors' if @item.errors[:school_id].any? %>">
-        <p> School Name: </p>
-        <%= f.select :school_id, options_for_select(@schools.map {|school| [school.name, school.id]}), :prompt=>"Select Your School" %><br><br>
-    </div>
+        
