@@ -47,9 +47,13 @@ class ItemsController < ApplicationController
     end 
 
     def donated 
-        current_user.update(donation_amount: (current_user.donation_amount.to_i - @item.total_cost.to_i))
-        @item.update_column(:amount_needed, 0)
-        flash[:msg] = "Thanks for your donation"
+        if current_user.donation_amount >= @item.total_cost
+            current_user.update(donation_amount: (current_user.donation_amount.to_i - @item.total_cost.to_i))
+            @item.update_column(:amount_needed, 0)
+            flash[:msg] = "Thanks for your donation"
+        else 
+            flash[:msg] = "Sorry, you don't have enough money"
+        end 
         redirect_to item_path 
     end
 

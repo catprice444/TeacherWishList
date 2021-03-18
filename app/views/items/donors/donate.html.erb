@@ -7,16 +7,6 @@
 <h3> Units Still Needed: <%= @item.amount_needed %></h3>
 
 <%= form_tag donate_item_path do %>
-    <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2> Error: </h2>
-      <ul>
-        <% @item.errors.full_messages.each do |msg| %>
-          <li> <%= msg %> </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
     <%= submit_tag "Donate" %>
 <% end %>
