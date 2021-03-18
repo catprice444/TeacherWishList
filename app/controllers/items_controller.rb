@@ -1,23 +1,19 @@
 class ItemsController < ApplicationController
-    before_action :school_id, only: [:new, :create, :edit, :update]
+    before_action :school_id, only: [:index, :new, :create, :edit, :update]
     before_action :item_id, only: [:show, :edit, :update, :donate, :donated]
     before_action :redirect_if_not_owner, only: [:edit, :update]
 
     def index 
-        if params[:school_id] && @school = School.find_by_id(params[:school_id])
-            @items = @school.items
-        else
-            flash[:msg] = "That doesn't exist" 
-            redirect_to schools_path
-        end
+        @items = @school.items
     end 
 
     def new
-       
+        @item = @school.items.new
     end 
 
     def create
-        if @item = @school.items.create(create_items_params)
+        @item = @school.items.create(create_items_params)
+        if @item.save
             redirect_to school_path(@item.school_id)
         else 
             render 'new'
