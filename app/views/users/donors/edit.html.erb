@@ -1,21 +1,8 @@
 <p> Update the amount you want to donate </p>
 <%= form_for current_user do |f| %>
-    <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2>Error:</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><% msg %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
-
-    <div class="field<%= 'field_with_errors' if @user.errors[:donation_amount].any? %>">
-        <%= f.label :donation_amount %>
-        <%= f.number_field :donation_amount %>
-    </div>
-
+   
+      <%= f.label :donation_amount %>
+      <%= f.number_field :donation_amount %>
 
     <%= f.submit "Confirm" %>
 <% end %>

@@ -3,6 +3,6 @@ class User < ApplicationRecord
     has_many :schools, through: :items
     has_secure_password
 
-    validates :name, uniqueness: {msg: "Username already taken"}, presence: {msg: "Enter a username"}
-    validates :role, presence: {msg: "Select a role"}
+    validates :name, uniqueness: {message: "Username already taken"}, presence: {message: "Enter a username"}
+    validates :role, presence: {message: "Select a role"}
 end

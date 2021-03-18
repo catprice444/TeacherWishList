@@ -5,8 +5,8 @@
     <div id="error_explanation">
       <h2> Error: </h2>
       <ul>
-        <% @school.errors.full_messages.each do |msg| %>
-          <li> <%= msg %> </li>
+        <% @school.errors.full_messages.each do |message| %>
+          <li> <%= message %> </li>
         <% end %>
       </ul>
     </div>
