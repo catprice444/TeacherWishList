@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
     end 
     
     def update 
-        if @item.update(update_item_params)
+        if @school.items.update(update_item_params)
             redirect_to item_path
         else 
             redirect_to schools_path
