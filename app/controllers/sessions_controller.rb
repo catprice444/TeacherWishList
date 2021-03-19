@@ -21,7 +21,9 @@ class SessionsController < ApplicationController
         flash[:msg] = "You have logged out"
     end
 
-     
+    def google
+       binding.pry
+    end 
     
     private 
     def auth

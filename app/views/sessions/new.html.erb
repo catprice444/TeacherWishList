@@ -17,6 +17,11 @@
         <%= text_field_tag "name" %><br><br>
     </div>
 
+    <div class="field <%= 'field_with_errors' if @user.errors[:email].any? %>">
+        <label> Email: </label>
+        <%= email_field_tag "email" %><br><br>
+    </div>
+
     <div class="field <%= 'field_with_errors' if @user.errors[:password].any? %>">
         <label> Password: </label>
         <%= password_field_tag "password" %><br>
