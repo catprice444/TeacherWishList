@@ -20,7 +20,7 @@
 
     <div class="field<%= 'field_with_errors' if @user.errors[:email].any? %>">
         <%= f.label :email %>
-        <%= f.email_field :email %>
+        <%= f.email_field :email, required:true %>
     </div>
     <br>  
     

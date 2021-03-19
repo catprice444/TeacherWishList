@@ -22,7 +22,15 @@ class SessionsController < ApplicationController
     end
 
     def google
-       binding.pry
+        @user = User.from_omniauth(auth)
+        if @user.save
+            session[:user_id] = @user.id
+            flash[:msg] = "Logged in through google"
+            redirect_to user_path(@user)
+        else
+            flash[:msg] = "Not logged in"
+            redirect_to '/'
+        end
     end 
     
     private 
