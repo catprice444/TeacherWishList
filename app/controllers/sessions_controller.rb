@@ -21,19 +21,7 @@ class SessionsController < ApplicationController
         flash[:msg] = "You have logged out"
     end
 
-    def github 
-        raise inspect.params
-        @user = User.find_or_create_by(email: auth["email"]) do |user|
-            user.username = auth["first_name"]
-            user.password = SecureRandom.hex(10)
-          end
-          if @user.save
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
-          else
-            redirect_to '/'
-          end
-    end 
+     
     
     private 
     def auth
