@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   get '/auth/:provider/callback' => 'sessions#google'
 
-  resources :users
+  resources :users  
   
   resources :schools do 
     resources :items 

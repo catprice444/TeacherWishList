@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_secure_password
 
     validates :name, presence: true
-    validates :role, presence: true
+    
 
     def self.from_omniauth(auth)
         where(email: auth.info.email).first_or_initialize do |user|
@@ -12,4 +12,5 @@ class User < ApplicationRecord
           user.password = SecureRandom.hex
         end
     end
+
 end

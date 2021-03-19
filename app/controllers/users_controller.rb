@@ -28,7 +28,9 @@ class UsersController < ApplicationController
         if @user != current_user
             redirect_to current_user
         else 
-            if @user.role == 1 
+            if @user.role == nil
+                render 'users/role'
+            elsif @user.role == 1 
                 render 'users/teachers/show'
             else @user.role == 2
                 render 'users/donors/show'
@@ -51,6 +53,13 @@ class UsersController < ApplicationController
         redirect_to user_path(@user)
     end 
 
+    def role
+        @user = User.find_by_id(params[:id])
+        raise.inpsect
+        @user.update(role_params)
+        redirect_to user_path(@user)
+    end 
+
     private 
     def user_params
         params.require(:user).permit(:name, :password, :role)
@@ -58,6 +67,10 @@ class UsersController < ApplicationController
 
     def donation_params
         params.require(:user).permit(:donation_amount)
+    end 
+
+    def role_params
+        params.require(:user).permit(:role)
     end 
 
     
