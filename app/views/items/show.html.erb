@@ -14,7 +14,8 @@ Units Still Needed: <%= @item.amount_needed %>
 <%= item_show_page_links %>
 <%= delete_button %>
 <%= donation_button %>
+<br>
 
-
+<%= link_to "Return to #{@item.school.name}" , school_items_path(@item.school_id) %>
 
 
