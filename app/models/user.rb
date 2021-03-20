@@ -3,7 +3,8 @@ class User < ApplicationRecord
     has_many :schools, through: :items
     has_secure_password
 
-    
+    validates :name, presence: true
+    validates :email, presence: true, uniqueness: true 
     
 
     def self.from_omniauth(auth)
