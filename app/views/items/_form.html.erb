@@ -1,14 +1,4 @@
 <%= form_for([@item.school,@item]) do |f| %>
-    <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2>Error:</h2>
-      <ul>
-        <% @item.errors.full_messages.each do |message| %>
-          <li><% message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
 
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :school_id, :value => params[:school_id] %>

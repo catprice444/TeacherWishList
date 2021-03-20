@@ -1,18 +1,7 @@
 <h1> Add your School </h1>
+<%= render partial: "layouts/errors", locals: {object: @school} %>
 
-<%= form_tag schools_path do %>
-    <% if @school.errors.any? %>
-    <div id="error_explanation">
-      <h2> Error: </h2>
-      <ul>
-        <% @school.errors.full_messages.each do |message| %>
-          <li> <%= message %> </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    
+<%= form_tag schools_path do %>    
     <div class="field <%= 'field_with_errors' if @school.errors[:name].any? %>">
         <label> Name: </label>
         <%= text_field_tag "name", @school.name %><br>
