@@ -28,9 +28,9 @@ class SessionsController < ApplicationController
         end
         if @user.valid?
             @user.save
-            session[:user_id] = @user.id
+            session[:id] = @user.id
             flash[:msg] = "Logged in through google"
-            redirect_to user_path(@user)
+            redirect_to edit_user_path(@user)
         else
             flash[:msg] = "Not logged in"
             redirect_to root_path

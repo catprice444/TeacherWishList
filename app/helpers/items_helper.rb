@@ -16,7 +16,7 @@ module ItemsHelper
     end 
 
     def delete_button 
-        if current_user.role == 1 
+        if current_user.role == 1 && current_user.id == @item.user_id
             (button_to 'Delete Item', @item, method: :delete)
         end 
     end 

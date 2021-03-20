@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
 
-    def index 
-        redirect_to root_path
-    end 
-
     def new 
         @user = User.new
     end 
@@ -21,25 +17,24 @@ class UsersController < ApplicationController
 
     def show 
         @user = User.find_by_id(params[:id])
-        if @user != current_user
-            redirect_to current_user
+        if @user.role == nil 
+            render 'users/role'
+        elsif @user.role == 1
+            render 'users/teachers/show'
         else 
-           if @user.role == nil 
-                render 'users/role'
-           elsif @user.role == 1
-                render 'users/teachers/show'
-           else 
-                render 'users/donors/show'
-           end 
-        end 
+            render 'users/donors/show'
+        end
+        redirect_to '/' if !@user 
     end 
 
     def edit 
         @user = User.find_by_id(params[:id])
-        if @user.role == 2
+        if @user.role == nil
+            render 'users/role'
+        elsif @user.role == 2
             render 'users/donors/edit'
         else 
-            redirect_to current_user
+            redirect_to user_path(@user)
         end 
     end 
 

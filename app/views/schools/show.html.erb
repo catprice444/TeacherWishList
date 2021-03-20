@@ -4,11 +4,7 @@
 </br>
 
 <% @school.items.each do |item| %>
-    <% if item.amount_needed != 0 || item.user_id == current_user.id %>
-           <p><U> <%= link_to item.name, item_path(item[:id]) %> </U><br>
-        <% else %>
-        <U> <%= item.name %></U><br>
-        <% end %> 
+    <p><U> <%= link_to item.name, item_path(item[:id]) %> for <%= item.user.name%> </U><br>
     Remaining Goal: $<%= item.total_cost %><br> 
     Units Still Needed: <%= item.amount_needed %></p><br>
 <% end %>
