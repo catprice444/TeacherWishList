@@ -17,11 +17,8 @@
 </br>
 
 
-<% if current_user.role == 1%>
-    <%= link_to "Add Item", new_school_item_path(@school) %>
-<% else %>
-    <p> Click on the item to donate <p>
-<% end %>
+<%= school_show_page_links %>
+    
 
 
 
