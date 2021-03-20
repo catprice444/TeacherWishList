@@ -17,22 +17,22 @@ class UsersController < ApplicationController
 
     def show 
         @user = User.find_by_id(params[:id])
-        if @user.role == nil 
-            render 'users/role'
-        elsif @user.role == 1
+        if @user.role == 1
             render 'users/teachers/show'
-        else 
+        elsif @user.role == 2 
             render 'users/donors/show'
+        else 
+             render 'users/role'
         end
         redirect_to '/' if !@user 
     end 
 
     def edit 
         @user = User.find_by_id(params[:id])
-        if @user.role == nil
-            render 'users/role'
-        elsif @user.role == 2
+        if @user.role == 2
             render 'users/donors/edit'
+        elsif @user.role == nil
+            render 'users/role'
         else 
             redirect_to user_path(@user)
         end 
