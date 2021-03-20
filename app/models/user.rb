@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
     validates :name, presence: true
     validates :email, presence: true, uniqueness: true 
-    
+  
 
     def self.from_omniauth(auth)
         where(email: auth.info.email).first_or_initialize do |user|

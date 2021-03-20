@@ -1,6 +1,6 @@
 <h1> Schools </h1>
 
-<% @schools.school_order.each do |school| %>
+<% @schools.each do |school| %>
     <p><b><%= link_to "#{school.name}", school_items_path(school)  %> - <%= school.location %></b></p>
         <% school.items.each do |item| %>
             <ul>

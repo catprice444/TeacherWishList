@@ -1,12 +1,8 @@
 <h1> Tell us who you are </h1>
 
-
 <%= form_for @user do |f| %>
-    <%= render partial: "layouts/errors", locals: {object: @user} %>
-    <div class="field<%= 'field_with_errors' if @user.errors[:role].any? %>">
         <%= f.label :role %>
         <%= f.select :role, [['Teacher', 1],['Donor', 2]], :prompt => 'Select One', required:true %>
-    </div>
     <br>
     </br>
 
