@@ -1,8 +1,5 @@
-<h2> Teachers </h2>
-
-    <h2><%= @user.name %></h2>
-
-    <h3> Requested Items </h3>
+<h2> Hi Teacher <%= @user.name %> </h2>
+    <%= teacher_display %>
 
     <% @user.items.item_order.each do |item| %>
         <p><U><%= link_to item.name, item_path(item[:id]) %></U><br>
