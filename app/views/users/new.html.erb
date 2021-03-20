@@ -2,21 +2,27 @@
 <%= render partial: "layouts/errors", locals: {object: @user} %>
 
 <%= form_for @user do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br>
-    </br>
 
-    <%= f.label :email %>
-    <%= f.email_field :email, required:true %>
+    <div class="field<%= 'field_with_errors' if @user.errors[:name].any? %>">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
     <br>
-    </br> 
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <br>
-    </br>
+    <div class="field<%= 'field_with_errors' if @user.errors[:email].any? %>">
+        <%= f.label :email %>
+        <%= f.email_field :email, required:true %>
+    </div>
+    <br>  
     
+    <div class="field<%= 'field_with_errors' if @user.errors[:password].any? %>">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+    </div>
+    <br>
+
+    </br>
+
     <%= f.submit "Submit" %>
 
 <% end %>
