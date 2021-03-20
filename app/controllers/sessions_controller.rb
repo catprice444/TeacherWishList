@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             session[:id] = @user.id
             redirect_to user_path(@user)
         else
-            render 'new'
+            render :new
         end
     end
     
@@ -26,13 +26,14 @@ class SessionsController < ApplicationController
             user.name = auth["info"]["first_name"]
             user.password = SecureRandom.hex(10)
         end
-        if @user.persisted?
+        if @user.valid?
+            @user.save
             session[:user_id] = @user.id
             flash[:msg] = "Logged in through google"
-            redirect_to @user
+            redirect_to user_path(@user)
         else
             flash[:msg] = "Not logged in"
-            redirect_to @user
+            redirect_to root_path
         end
     end 
     

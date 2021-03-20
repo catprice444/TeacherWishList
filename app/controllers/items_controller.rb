@@ -12,11 +12,8 @@ class ItemsController < ApplicationController
 
     def create
         @item = @school.items.create(create_items_params)
-        if @item.save
-            redirect_to school_path(@item.school_id)
-        else 
-            render 'new'
-        end 
+        @item.save
+        redirect_to school_path(@item.school_id)
     end 
 
     def show 
@@ -32,11 +29,8 @@ class ItemsController < ApplicationController
     end 
     
     def update 
-        if @school.items.update(update_item_params)
-            redirect_to item_path
-        else 
-            redirect_to schools_path
-        end 
+        @school.items.update(update_item_params)
+        redirect_to item_path
     end 
 
     def donate

@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-    before_action :school_id, only: [:show, :edit, :update]
+    before_action :school_id, only: [:show]
 
     def index 
         @schools = School.all 
@@ -14,18 +14,13 @@ class SchoolsController < ApplicationController
         if @school.save
             redirect_to school_path(@school)
         else 
-            render 'new'
+            render :new
         end 
     end 
 
     def show  
     end 
 
-    def edit 
-    end 
-
-    def update 
-    end 
 
     private 
     def school_params 

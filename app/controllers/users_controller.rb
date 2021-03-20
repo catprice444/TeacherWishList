@@ -15,7 +15,7 @@ class UsersController < ApplicationController
             session[:id] = @user.id
             render 'users/role'
         else 
-            render 'new'
+            render :new
         end 
     end 
 
