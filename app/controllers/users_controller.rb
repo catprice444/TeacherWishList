@@ -13,11 +13,7 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         if @user.save 
             session[:id] = @user.id
-            if @user.role == 1
-                render 'users/teachers/show'
-            else 
-                render 'users/donors/show'
-            end 
+            render 'users/role'
         else 
             render 'new'
         end 
@@ -28,13 +24,13 @@ class UsersController < ApplicationController
         if @user != current_user
             redirect_to current_user
         else 
-            if @user.role == nil
+           if @user.role == nil 
                 render 'users/role'
-            elsif @user.role == 1 
+           elsif @user.role == 1
                 render 'users/teachers/show'
-            else @user.role == 2
+           else 
                 render 'users/donors/show'
-            end 
+           end 
         end 
     end 
 
@@ -49,20 +45,17 @@ class UsersController < ApplicationController
 
     def update 
         @user = User.find_by_id(params[:id])
-        @user.update(donation_params)
-        redirect_to user_path(@user)
-    end 
-
-    def role
-        @user = User.find_by_id(params[:id])
-        raise.inpsect
-        @user.update(role_params)
+        if @user.role == nil 
+            @user.update(role_params)
+        else 
+            @user.update(donation_params)
+        end 
         redirect_to user_path(@user)
     end 
 
     private 
     def user_params
-        params.require(:user).permit(:name, :password, :role)
+        params.require(:user).permit(:name, :password, :email)
     end 
 
     def donation_params
@@ -71,8 +64,5 @@ class UsersController < ApplicationController
 
     def role_params
         params.require(:user).permit(:role)
-    end 
-
-    
-
+    end
 end

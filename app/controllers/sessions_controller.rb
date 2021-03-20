@@ -22,14 +22,17 @@ class SessionsController < ApplicationController
     end
 
     def google
-        @user = User.from_omniauth(auth)
-        if @user.save
+        @user = User.find_or_create_by(email: auth["info"]["email"]) do |user|
+            user.name = auth["info"]["first_name"]
+            user.password = SecureRandom.hex(10)
+        end
+        if @user.persisted?
             session[:user_id] = @user.id
             flash[:msg] = "Logged in through google"
-            redirect_to user_role_path
+            redirect_to @user
         else
             flash[:msg] = "Not logged in"
-            redirect_to '/'
+            redirect_to @user
         end
     end 
     

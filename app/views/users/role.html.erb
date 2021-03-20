@@ -12,11 +12,13 @@
     </div>
     <% end %>
 
-<div class="field<%= 'field_with_errors' if @user.errors[:role].any? %>">
-    <%= f.label :role %>
-    <%= f.select :role, [['Teacher', 1],['Donor', 2]], :prompt => 'Select One' %>
-</div>
+    <div class="field<%= 'field_with_errors' if @user.errors[:role].any? %>">
+        <%= f.label :role %>
+        <%= f.select :role, [['Teacher', 1],['Donor', 2]], :prompt => 'Select One', required:true %>
+    </div>
+    <br>
+    </br>
 
-<%= f.submit "Submit" %>
+    <%= f.submit "Submit" %>
 
 <% end %>

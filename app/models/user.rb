@@ -3,7 +3,7 @@ class User < ApplicationRecord
     has_many :schools, through: :items
     has_secure_password
 
-    validates :name, presence: true
+    
     
 
     def self.from_omniauth(auth)
