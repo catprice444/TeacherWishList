@@ -2,16 +2,13 @@
 <%= render partial: "layouts/errors", locals: {object: @school} %>
 
 <%= form_tag schools_path do %>    
-    <div class="field <%= 'field_with_errors' if @school.errors[:name].any? %>">
-        <label> Name: </label>
-        <%= text_field_tag "name", @school.name %><br>
-    </div>
+    <label> Name: </label>
+    <%= text_field_tag "name", @school.name %><br>
+    
 
     
-    <div class="field <%= 'field_with_errors' if @school.errors[:location].any? %>">
-        <label> Location: </label>
-        <%= text_field_tag "location", @school.location %><br>
-    </div>
+    <label> Location: </label>
+    <%= text_field_tag "location", @school.location %><br>
     </br>
 
     <%= submit_tag "Add Your School" %>
