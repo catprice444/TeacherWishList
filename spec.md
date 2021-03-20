@@ -12,7 +12,7 @@ Specs:
 - [x] Include signup (BCrypt)
 - [x] Include login (BCrypt)
 - [x] Include logout (BCrypt)
-- [ ] Include third party signup/login (OmniAuth)
+- [x] Include third party signup/login (OmniAuth)
 - [x] Include nested resource show or index (URL e.g. schools/1/items)
 - [x] Include nested resource "new" form (URL e.g. schools/1/items/new)
 - [x] Include form display of validation errors (form URL e.g. /schools/new)
