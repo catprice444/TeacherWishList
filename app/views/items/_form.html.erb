@@ -3,22 +3,14 @@
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :school_id, :value => params[:school_id] %>
 
-    <div class="field<%= 'field_with_errors' if @item.errors[:name].any? %>">
-        <p> Item Name: </p>
-        <%= f.text_field :name %><br>
-    </div> 
-
-    
-    <div class="field<%= 'field_with_errors' if @item.errors[:cost].any? %>">
-        <p> Cost Per Unit (round up): </p>
-        <%= f.number_field :cost %><br>
-    </div>
-
-    
-    <div class="field<%= 'field_with_errors' if @item.errors[:amount_needed].any? %>">
-        <p> Amount Needed: </p>
-        <%= f.number_field :amount_needed %><br>
-    </div>
+    <p> Item Name: </p>
+    <%= f.text_field :name, required:true %><br>
+   
+    <p> Cost Per Unit (round up): </p>
+    <%= f.number_field :cost, required:true %><br>
+  
+    <p> Amount Needed: </p>
+    <%= f.number_field :amount_needed, required:true %><br>
 
     </br>
     <%= f.submit %>
